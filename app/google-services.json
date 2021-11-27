@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "234884619417",
+    "project_id": "bazzarappdg",
+    "storage_bucket": "bazzarappdg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234884619417:android:c012333684965ba0506c08",
+        "android_client_info": {
+          "package_name": "com.example.bazzarappdg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234884619417-qu2t7mf2kjp59oduilm3lanba7hi9imc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bazzarappdg",
+            "certificate_hash": "fc8854d3c7f6b62365b9c5b19037bb82117a9704"
+          }
+        },
+        {
+          "client_id": "234884619417-h4ehldargd3bkujqfd9kkbfatgpt68mk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf36XYdE5E40EA3zAr4AnOT4K7Bs2oO80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234884619417-h4ehldargd3bkujqfd9kkbfatgpt68mk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
