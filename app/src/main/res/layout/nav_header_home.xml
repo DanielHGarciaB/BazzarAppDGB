@@ -30,13 +30,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/emailTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/test_username"
                 android:textSize="15dp"  />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/providerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/test_provider"
