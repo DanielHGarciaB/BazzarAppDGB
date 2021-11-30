@@ -57,8 +57,7 @@ class ProductFragment : Fragment() {
 
             }
 
-        db.collection("product").document(product).collection("comments").get()
-            .addOnSuccessListener {
+        db.collection("product").document(product).collection("comments").get().addOnSuccessListener {
 
                 if (it.any()) {
 

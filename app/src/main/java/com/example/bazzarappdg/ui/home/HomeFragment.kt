@@ -116,7 +116,7 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
     private fun getAllProduct() {
         listProduct.clear()
 
-        db.collection("product").get().addOnSuccessListener { result ->
+        db.collection("products").get().addOnSuccessListener { result ->
             for (document in result) {
                 Log.d(TAG, "${document.id} => ${document.data}")
 
@@ -198,7 +198,7 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
     private fun filterForCategory(category: String) {
         listProduct.clear()
 
-        db.collection("product")
+        db.collection("products")
             .whereEqualTo("category", category)
             .get().addOnSuccessListener { result ->
                 for (document in result) {
@@ -227,7 +227,7 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
     private fun filterForSeller(seller: String) {
         listProduct.clear()
 
-        db.collection("product")
+        db.collection("products")
             .whereEqualTo("seller", seller)
             .get().addOnSuccessListener { result ->
                 for (document in result) {
@@ -256,7 +256,7 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
     private fun filterForCategoryAndSeller(category: String, seller: String) {
         listProduct.clear()
 
-        db.collection("product")
+        db.collection("products")
             .whereEqualTo("seller", seller).whereEqualTo("category", category)
             .get().addOnSuccessListener { result ->
                 for (document in result) {
@@ -284,7 +284,7 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
 
     private fun searchForTitle(newText: String) {
         listProduct.clear()
-        db.collection("product")
+        db.collection("products")
             .whereGreaterThanOrEqualTo("title", newText)
             .whereLessThanOrEqualTo("title", (newText + "\uF7FF"))
             .get().addOnSuccessListener { result ->
@@ -321,7 +321,7 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
 
         var bundle =Bundle()
         bundle.putString("email",email)
-        bundle.putString("product",productItem.id)
+        bundle.putString("products",productItem.id)
         parentFragmentManager.setFragmentResult("key",bundle)
 
         var nav = Navigation.createNavigateOnClickListener(R.id.nav_product)
@@ -333,7 +333,7 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
 
         var average : Double = 0.0
 
-        db.collection("product").document(product).collection("score").get()
+        db.collection("products").document(product).collection("score").get()
             .addOnSuccessListener {
 
                 if (it.any()) {
