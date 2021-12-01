@@ -3,6 +3,7 @@ package com.example.bazzarappdg
 import android.content.Context
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -14,6 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bazzarappdg.databinding.ActivityHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 
 enum class ProviderType{
     BASIC,
@@ -72,10 +74,33 @@ class HomeActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.home, menu)
         return true
     }
-    
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_singoff -> {
+                onSignoff();
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_home)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+    fun onSignoff() {
+
+        //Delete Data
+        val prefs=getSharedPreferences(resources.getString(R.string.preds_file), Context.MODE_PRIVATE).edit()
+        prefs.clear()
+        prefs.apply()
+
+        val navView: NavigationView = binding.navView
+
+        FirebaseAuth.getInstance().signOut()
+        onBackPressed()
+    }
+
 }

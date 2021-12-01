@@ -1,17 +1,25 @@
 package com.example.bazzarappdg
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import com.example.bazzarappdg.databinding.ActivityHomeBinding
 import com.facebook.CallbackManager
+import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
+
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityHomeBinding
 
     private var editEmail: EditText? = null
     private var editPassword: EditText? = null
@@ -85,4 +93,6 @@ class MainActivity : AppCompatActivity() {
         googleClient.signOut()
         startActivityForResult(googleClient.signInIntent, GOOGLE_SING_IN)
     }
+
+
 }
