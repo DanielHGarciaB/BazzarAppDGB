@@ -23,6 +23,7 @@ class ProductFragment : Fragment() {
     private var desProduct: TextView? = null
     private var listViewComments: ListView? = null
     private var listComments = arrayListOf<String>()
+    private var image = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,10 +51,12 @@ class ProductFragment : Fragment() {
 
         db.collection("product").document(product).get()
             .addOnSuccessListener {
-                textproduct!!.setText(it.get("title") as String)
+
+                textproduct!!.text = it.get("title") as String
                 Picasso.get().load(it.get("imagen").toString()).into(imageproduct!!)
-                idProduct!!.setText(it.id)
-                desProduct!!.setText(it.get("description") as String)
+                image = it.get("imagen").toString()
+
+                idProduct!!.text = it.id
 
             }
 

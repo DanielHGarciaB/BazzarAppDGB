@@ -167,7 +167,7 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-        if (parent != null) {
+        if (parent != null && parent.getItemAtPosition(position).toString().isNotEmpty()) {
 
             var category: String = spinnerCategory.getSelectedItem().toString()
             var seller: String = spinnerSeller.getSelectedItem().toString()
@@ -187,7 +187,6 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
                     }
                 }
             }
-
         }
     }
 

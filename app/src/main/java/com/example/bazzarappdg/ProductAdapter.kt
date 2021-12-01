@@ -37,7 +37,13 @@ public  class ProductAdapter(private val dataSet: MutableList<ProductEntity>,pri
 
         holder.sellerItem.text = productEntity.seller;
 
-        holder.scoreItem.text = productEntity.score.toString();
+        var average = productEntity.average;
+        if(average > 0){
+            holder.scoreItem.text = average.toString()
+        }else{
+            holder.scoreItem.visibility = View.INVISIBLE;
+        }
+
     }
 
     override fun getItemCount():Int{
