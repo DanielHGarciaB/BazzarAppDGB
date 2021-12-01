@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
 import com.facebook.CallbackManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -15,6 +17,9 @@ class MainActivity : AppCompatActivity() {
     private var editPassword: EditText? = null
 
     var db = FirebaseFirestore.getInstance()
+
+    private val GOOGLE_SING_IN = 100
+    private val callbackManager = CallbackManager.Factory.create()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +77,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun googleLogin(view: android.view.View) {
+        val googleConf = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(resources.getString(R.string.default_web_client_id2))
+            .requestEmail().build()
 
+        val googleClient = GoogleSignIn.getClient(this, googleConf)
+        googleClient.signOut()
+        startActivityForResult(googleClient.signInIntent, GOOGLE_SING_IN)
     }
 }
