@@ -169,9 +169,9 @@ class ProductFragment : Fragment() {
                     commentText!!.text = resources.getString(R.string.test_Comments)
                 }
             }
-            .addOnFailureListener { exception ->
+                /*.addOnFailureListener { exception ->
                 Log.d(TAG, "Error getting documents: ", exception)
-            }
+                }*/
     }
 
 }

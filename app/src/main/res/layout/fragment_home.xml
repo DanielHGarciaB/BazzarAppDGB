@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment"
+    android:layout_gravity="center"
     android:orientation="vertical"
-    android:layout_gravity="center">
+    tools:context=".ui.home.HomeFragment">
 
     <LinearLayout
         android:id="@+id/layout"
@@ -37,56 +36,55 @@
             <LinearLayout
                 android:id="@+id/layoutSpinner1"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/layoutSpinner"
-                android:orientation="vertical">
+                android:layout_weight="1"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/layoutSpinner">
 
                 <TextView
                     android:id="@+id/textCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/riberio"
                     android:text="@string/test_Category"
-                    android:textColor="@color/blue_700"
-                    android:textSize="12dp"
-                    app:layout_constraintTop_toTopOf="@+id/layoutSpinner1"/>
+                    android:textColor="@color/red_800"
+                    android:textSize="15dp"
+                    app:layout_constraintTop_toTopOf="@+id/layoutSpinner1" />
 
                 <Spinner
                     android:id="@+id/category_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="#F4F3F3"
                     android:layout_marginTop="5dp"
                     app:layout_constraintTop_toBottomOf="@+id/textCategory" />
 
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:id="@+id/layoutSpinner2"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/layoutSpinner"
-                android:orientation="vertical">
+                android:layout_weight="1"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/layoutSpinner">
 
                 <TextView
                     android:id="@+id/textSeller"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/riberio"
                     android:text="@string/test_Seller"
-                    android:textColor="@color/blue_700"
-                    android:textSize="12dp"
-                    app:layout_constraintTop_toTopOf="@+id/layoutSpinner2"/>
+                    android:textColor="@color/red_800"
+                    android:textSize="15dp"
+                    app:layout_constraintTop_toTopOf="@+id/layoutSpinner2" />
 
                 <Spinner
                     android:id="@+id/seller_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:backgroundTint="#F4F3F3"
                     app:layout_constraintTop_toTopOf="@+id/textSeller"
                     tools:layout_editor_absoluteX="0dp" />
 
@@ -102,9 +100,9 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         app:layout_constraintTop_toBottomOf="@+id/layout"
-        tools:layout_editor_absoluteX="0dp"
-        android:layout_marginTop="5dp">
+        tools:layout_editor_absoluteX="0dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/reclycler"
