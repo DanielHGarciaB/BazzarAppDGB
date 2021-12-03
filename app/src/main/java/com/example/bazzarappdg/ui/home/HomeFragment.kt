@@ -1,27 +1,21 @@
 package com.example.bazzarappdg.ui.home
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.bazzarappdg.R
-import com.example.bazzarappdg.databinding.FragmentHomeBinding
-import android.content.ContentValues.TAG
-import android.util.Log
 import android.widget.*
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.get
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bazzarappdg.databinding.FragmentHomeBinding
 import com.google.firebase.firestore.*
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
 import android.R.attr.category
 import android.content.Context
 import androidx.navigation.Navigation
@@ -29,9 +23,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.preference.PreferenceManager
 import android.content.SharedPreferences
+import androidx.lifecycle.lifecycleScope
 import com.example.bazzarappdg.*
-
-
+import com.example.bazzarappdg.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.*
+import kotlinx.coroutines.tasks.await
+import java.text.DecimalFormat
+import kotlin.math.roundToInt
+import kotlin.math.roundToLong
 public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
     AdapterView.OnItemSelectedListener, ProductAdapter.OnItemClickListener {
 
@@ -139,12 +139,16 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
                             document.data["category"].toString(),
                             document.data["seller"].toString(),
                             document.id,
-                            averageScore(document.id)
+                            document.data["average"].toString().toDouble()
                         )
                     )
                 }
 
             }
+            lifecycleScope.launch {
+                averageScore()
+            }
+
             productAdapter.notifyDataSetChanged();
         }
 
@@ -155,13 +159,11 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-
         if (newText!!.isEmpty()) {
             getAllProduct()
         } else {
             searchForTitle(newText)
         }
-
         return true;
     }
 
@@ -214,7 +216,7 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
                                 document.data["category"].toString(),
                                 document.data["seller"].toString(),
                                 document.id,
-                                averageScore(document.id)
+                                document.data["average"].toString().toDouble()
                             )
                         )
                     }
@@ -243,7 +245,7 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
                                 document.data["category"].toString(),
                                 document.data["seller"].toString(),
                                 document.id,
-                                averageScore(document.id)
+                                document.data["average"].toString().toDouble()
                             )
                         )
                     }
@@ -272,7 +274,7 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
                                 document.data["category"].toString(),
                                 document.data["seller"].toString(),
                                 document.id,
-                                averageScore(document.id)
+                                document.data["average"].toString().toDouble()
                             )
                         )
                     }
@@ -301,7 +303,7 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
                                 document.data["category"].toString(),
                                 document.data["seller"].toString(),
                                 document.id,
-                                averageScore(document.id)
+                                document.data["average"].toString().toDouble()
                             )
                         )
                     }
@@ -328,24 +330,24 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
 
     }
 
-    private fun averageScore(product: String):Double{
+    private suspend fun averageScore() {
 
-        var average : Double = 0.0
+        for (product in listProduct) {
+            var average = 0.0
+            db.collection("products").document(product.id).collection("comments").get()
+                .addOnSuccessListener {
 
-        db.collection("products").document(product).collection("score").get()
-            .addOnSuccessListener {
+                    if (it.any()) {
 
-                if (it.any()) {
-                    for (score in it) {
-                        average += score.get("score").toString().toDouble()
+                        for (score in it) {
+                            average += score.data["score"].toString().toDouble()
+                        }
+
+                        db.collection("products").document(product.id).update(
+                            "average",  average / it.count()
+                        )
                     }
-                    average /= it.count()
-                    productAdapter.notifyDataSetChanged();
-                }
-            }
-
-        return average
+                }.await()
+        }
     }
-
-
 }
