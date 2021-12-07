@@ -331,10 +331,9 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
     }
 
     private suspend fun averageScore() {
-
         for (product in listProduct) {
             var average = 0.0
-            db.collection("products").document(product.id).collection("comments").get()
+            db.collection("products").document(product.id).collection("commentation").get()
                 .addOnSuccessListener {
 
                     if (it.any()) {
@@ -344,7 +343,7 @@ public class HomeFragment : Fragment(), SearchView.OnQueryTextListener,
                         }
 
                         db.collection("products").document(product.id).update(
-                            "average",  average / it.count()
+                            "average",  String.format("%.2f",(average / it.count())).toDouble()
                         )
                     }
                 }.await()

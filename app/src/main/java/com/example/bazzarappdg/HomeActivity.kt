@@ -1,6 +1,7 @@
 package com.example.bazzarappdg
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -14,7 +15,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
 import com.example.bazzarappdg.databinding.ActivityHomeBinding
+import com.example.bazzarappdg.ui.gallery.GalleryFragment
 import com.google.firebase.auth.FirebaseAuth
 
 enum class ProviderType{
@@ -38,6 +41,7 @@ class HomeActivity : AppCompatActivity() {
         binding.appBarHome.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+
         }
 
         val drawerLayout: DrawerLayout = binding.drawerLayout

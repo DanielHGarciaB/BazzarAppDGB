@@ -11,14 +11,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import java.util.*
 
 class ProductFragment : Fragment() {
 
     private var db = FirebaseFirestore.getInstance()
+    private var db2 = FirebaseFirestore.getInstance()
 
     private var textproduct: TextView? = null
     private var imageproduct: ImageView? = null
@@ -31,6 +35,7 @@ class ProductFragment : Fragment() {
     private var categoryAndsellerProduct: TextView? = null
     private var costProduct: TextView? = null
     private var amountText: TextView? = null
+    private var scoreItem: TextView? = null
     private var costUnit = 0
     private var image = ""
 
@@ -52,6 +57,8 @@ class ProductFragment : Fragment() {
         costProduct = root.findViewById<TextView>(R.id.costProduct)
         commentText = root.findViewById<TextView>(R.id.commentText)
         amountText = root.findViewById<TextView>(R.id.amount)
+        scoreItem = root.findViewById<TextView>(R.id.scoreItem)
+
 
         setFragmentResultListener("key") { requestKey, bundle ->
             //Load Product
@@ -116,7 +123,6 @@ class ProductFragment : Fragment() {
 
             var nav = Navigation.createNavigateOnClickListener(R.id.nav_gallery)
             nav.onClick(view);
-
         }
 
         return root
@@ -142,6 +148,8 @@ class ProductFragment : Fragment() {
                 categoryAndsellerProduct!!.text = it.get("category").toString() +" "+it.get("seller").toString()
                 costProduct!!.text =  it.get("cost").toString()
                 costUnit = it.get("cost").toString().toInt()
+                scoreItem!!.text = it.get("average").toString().format("%.2",it.get("average"))
+
             }
 
         db.collection("products").document(product).collection("commentation").get()
@@ -169,9 +177,6 @@ class ProductFragment : Fragment() {
                     commentText!!.text = resources.getString(R.string.test_Comments)
                 }
             }
-                /*.addOnFailureListener { exception ->
-                Log.d(TAG, "Error getting documents: ", exception)
-                }*/
     }
 
 }

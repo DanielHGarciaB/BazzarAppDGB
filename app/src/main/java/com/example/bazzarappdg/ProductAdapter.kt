@@ -38,11 +38,7 @@ public  class ProductAdapter(private val dataSet: MutableList<ProductEntity>,pri
         holder.sellerItem.text = productEntity.seller;
 
         var average = productEntity.average;
-        if(average > 0){
-            holder.scoreItem.text = average.toString()
-        }else{
-            holder.scoreItem.visibility = View.INVISIBLE;
-        }
+
 
     }
 
@@ -56,7 +52,7 @@ public  class ProductAdapter(private val dataSet: MutableList<ProductEntity>,pri
         val imagenItem :ImageView = itemView.findViewById<ImageView>(R.id.imagenItem)
         val categoryItem:TextView = itemView.findViewById<TextView>(R.id.categoryItem);
         val sellerItem :TextView= itemView.findViewById<TextView>(R.id.sellerItem);
-        val scoreItem :TextView= itemView.findViewById<TextView>(R.id.scoreItem);
+        val average :TextView= itemView.findViewById<TextView>(R.id.scoreItem);
 
         init {
             itemView.setOnClickListener(this)

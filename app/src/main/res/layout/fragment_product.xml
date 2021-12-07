@@ -196,16 +196,16 @@
                     <View
                         android:id="@+id/divider"
                         android:layout_width="match_parent"
-                        android:layout_height="11dp"
+                        android:layout_height="1dp"
                         android:background="?android:attr/listDivider" />
 
                     <TextView
                         android:id="@+id/scoreItem"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:drawableLeft="@drawable/start"
                         android:drawablePadding="5dp"
+                        android:gravity="center"
                         android:singleLine="true"
                         android:text="0"
                         android:textColor="@color/blue_700"
@@ -221,9 +221,12 @@
 
                     <ListView
                         android:id="@+id/listComments"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="178dp"
-                        android:layout_margin="5dp" />
+                        android:layout_margin="5dp"
+                        android:dividerHeight="3dp"
+
+                         />
 
                 </LinearLayout>
 

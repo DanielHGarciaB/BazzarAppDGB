@@ -21,18 +21,18 @@
             android:gravity="right">
 
             <Button
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:gravity="center"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_margin="10dp"
-                android:background="@android:drawable/ic_delete"/>
+                android:background="@drawable/ic_menu_trash"
+                android:gravity="center" />
 
         </LinearLayout>
 
         <ImageView
             android:id="@+id/imagenItem"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:layout_margin="3dp"
             android:scaleType="fitXY"
             android:src="@drawable/logo" />
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:text="Title"
-                    android:textColor="@color/blue_700"
+                    android:textColor="@color/red_800"
                     android:textSize="22dp" />
 
                 <TextView
