@@ -160,9 +160,9 @@ class ProductFragment : Fragment() {
                     for (comment in it) {
                         listComments.add(
                             comment.get("user").toString()
-                                    + " : " + "Stars"
-                                    + " " + comment.get("score").toString()
-                                    + " : " + comment.get("comment").toString()
+                            + " : " + "Stars"
+                            + " " + comment.get("score").toString()
+                            + " : " + comment.get("comment").toString()
                         )
                     }
 

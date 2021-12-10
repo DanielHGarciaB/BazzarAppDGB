@@ -14,21 +14,6 @@
         android:background="@drawable/customborderproduct"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="right">
-
-            <Button
-                android:id="@+id/delete"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/ic_menu_trash"
-                android:gravity="center" />
-
-        </LinearLayout>
 
         <ImageView
             android:id="@+id/imagenItem"
@@ -59,11 +44,11 @@
                     android:textSize="22dp" />
 
                 <TextView
-                    android:id="@+id/costItem"
+                    android:id="@+id/desItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:text="Cost"
+                    android:text="DesItem"
                     android:textColor="@color/green_200"
                     android:textSize="18dp" />
 
